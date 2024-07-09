@@ -4,3 +4,4 @@ layout: default
 {% if page.github %}
 <a href={{page.github}}>GitHub Repo</a>
 {% endif %}
+{{ content }}

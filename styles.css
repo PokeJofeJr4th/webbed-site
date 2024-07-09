@@ -4,3 +4,24 @@ body {
   align-items: center;
   flex-direction: column;
 }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav:first-child {
+  float: left;
+}
+
+.nav a {
+  padding: 0.1em;
+  background-color: beige;
+  border: 0.1em solid black;
+  border-radius: 0.1em;
+  border-width: 0.1em 0 0 0.1em;
+}
+
+.nav a :hover {
+  border-width: 0 0.1em 0.1em 0;
+}

@@ -5,23 +5,25 @@ body {
   flex-direction: column;
 }
 
-.nav {
+nav {
   display: flex;
   flex-direction: row;
 }
 
-.nav:first-child {
+nav:first-child {
   float: left;
 }
 
-.nav a {
+nav a {
   padding: 0.1em;
   background-color: beige;
   border: 0.1em solid black;
   border-radius: 0.1em;
   border-width: 0.1em 0 0 0.1em;
+  margin: 0.1em 0 0 0.1em;
 }
 
-.nav a :hover {
+nav a :hover {
   border-width: 0 0.1em 0.1em 0;
+  margin: 0.1em 0 0 0.1em;
 }

@@ -16,14 +16,21 @@ nav:first-child {
 
 nav a {
   padding: 0.1em;
-  background-color: beige;
-  border: 0.1em solid black;
-  border-radius: 0.1em;
-  border-width: 0.1em 0 0 0.1em;
+  background-color: wheat;
+  color: maroon;
+  border: solid black;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  border-width: 0 0.1em 0.1em 0;
   margin: 0.1em 0 0 0.1em;
+  text-decoration: none;
 }
 
-nav a :hover {
-  border-width: 0 0.1em 0.1em 0;
+nav a:hover {
+  background-color: white;
+}
+
+nav a:active {
+  border-width: 0.1em 0 0 0.1em;
   margin: 0.1em 0 0 0.1em;
 }

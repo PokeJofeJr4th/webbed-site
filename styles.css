@@ -1,36 +1,45 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  background-color: darkslategray;
+  margin: 0;
+  height: 100%;
+}
+
+section {
+  min-width: 50%;
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  background-color: white;
 }
 
 nav {
   display: flex;
   flex-direction: row;
+  background-color: cadetblue;
+  position: sticky;
+  justify-content: center;
 }
 
-nav:first-child {
-  float: left;
+nav :first-child {
+  margin-right: 20vw;
 }
 
 nav a {
-  padding: 0.1em;
-  background-color: wheat;
-  color: maroon;
-  border: solid black;
+  background-color: lightcyan;
+  color: darkcyan;
+  border: solid darkcyan;
   border-radius: 0.5em;
   padding: 0.4em;
   border-width: 0 0.1em 0.1em 0;
-  margin: 0.1em 0 0 0.1em;
+  margin: 0.5em 0.6em 0.6em 0.5em;
   text-decoration: none;
 }
 
 nav a:hover {
-  background-color: white;
+  background-color: aliceblue;
 }
 
 nav a:active {
   border-width: 0.1em 0 0 0.1em;
-  margin: 0.1em 0 0 0.1em;
+  margin: 0.6em 0.5em 0.5em 0.6em;
 }

@@ -6,9 +6,10 @@ body {
 
 section {
   width: min(90vw, 40em);
-  min-height: calc(100vh - 9em);
+  min-height: calc(100vh - 14em);
   margin: auto;
   margin-top: 5em;
+  margin-bottom: 5em;
   padding: 2em;
   background-color: white;
 }
@@ -74,4 +75,9 @@ h1 + a {
   text-align: center;
   display: block;
   font-style: italic;
+}
+
+footer {
+  text-align: center;
+  float: inline-end;
 }

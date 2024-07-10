@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?" />
     <title>{{page.title}} | Abigail JC</title>
     <link rel="stylesheet" href="/styles/main.css" />
     {% if content contains "pre" %}
@@ -14,6 +14,9 @@
       <a href="/">Home</a>
       <a href="/projects">Projects</a>
     </nav>
+    {% if page.title %}
+    <h1>{{ page.title }}</h1>
+    {% endif %}
     <section>{{ content }}</section>
     <footer>
       Crab icon &copy;2020 Twitter, Inc and other contributors. Licensed under

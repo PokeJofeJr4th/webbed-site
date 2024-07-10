@@ -1,5 +1,5 @@
 ---
-template: project
+layout: project
 github: https://github.com/PokeJofeJr4th/Chai
 ---
 

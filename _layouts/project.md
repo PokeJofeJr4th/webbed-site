@@ -2,6 +2,6 @@
 layout: default
 ---
 {% if page.github %}
-<a href={{page.github}}>GitHub Repo</a>
+[{{ page.title }} on GitHub]({{page.github}})
 {% endif %}
 {{ content }}

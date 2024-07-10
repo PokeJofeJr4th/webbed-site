@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>{{page.title}} | Abigail JC</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    {% if content contains "pre" %}
+    <link rel="stylesheet" href="/styles/code.css" />
+    {% endif %}
   </head>
   <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/projects">Projects</a>
+      <a href="/">Home</a>
+      <a href="/projects">Projects</a>
     </nav>
-    <section>
-        {{ content }}
-    </section>
+    <section>{{ content }}</section>
   </body>
 </html>

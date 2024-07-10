@@ -1,14 +1,14 @@
 body {
   background-color: darkslategray;
   margin: 0;
-  height: 100vh;
+  min-height: 80vh;
 }
 
 section {
   min-width: 50%;
   width: fit-content;
   max-width: min(90vw, 40em);
-  height: calc(100vh - 9em);
+  min-height: calc(100vh - 9em);
   margin: auto;
   margin-top: 5em;
   padding: 2em;

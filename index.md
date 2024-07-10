@@ -3,4 +3,4 @@ title: Hello There
 layout: default
 ---
 
-Nothing to see here...
+I'm primarily a rust developer interested in programming languages. Check out my [projects](/projects) to see what I'm working on.

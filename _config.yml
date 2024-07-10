@@ -1,3 +1,9 @@
 projects:
   - title: DreamBerd-RS
     url: /projects/dreamberd-rs
+  - title: JVM-RS
+    url: /projects/jvmrs
+  - title: Chai
+    url: /projects/chai
+  - title: Minescript
+    url: /projects/minescript

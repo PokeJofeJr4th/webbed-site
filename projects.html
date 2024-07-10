@@ -1,0 +1,14 @@
+---
+layout: default
+title: Projects
+---
+
+<ul>
+  {% for page in site.pages %} {% if page.permalink contains "/projects/" %}
+  <li>
+    <a href="{{page.url}}">{{page.title}}</a>
+    <br />
+    {{page.description}}
+  </li>
+  {% endif %} {% endfor %}
+</ul>

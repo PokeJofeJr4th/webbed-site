@@ -4,7 +4,7 @@ title: Projects
 ---
 
 <ul>
-  {% for page in site.pages %} {% if page.permalink contains "/projects/" %}
+  {% for page in site.pages %} {% if page.url contains "/projects/" %}
   <li>
     <a href="{{page.url}}">{{page.title}}</a>
     <br />

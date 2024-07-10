@@ -1,8 +1,0 @@
----
-layout: default
----
-
-{% if page.github %}
-<a href={{page.github}}>on GitHub</a>
-{% endif %}
-{{ content }}

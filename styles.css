@@ -1,14 +1,17 @@
 body {
   background-color: darkslategray;
   margin: 0;
-  height: 100%;
+  height: 100vh;
 }
 
 section {
   min-width: 50%;
   width: fit-content;
-  height: 100%;
+  max-width: min(90vw, 40em);
+  height: calc(100vh - 9em);
   margin: auto;
+  margin-top: 5em;
+  padding: 2em;
   background-color: white;
 }
 
@@ -16,8 +19,25 @@ nav {
   display: flex;
   flex-direction: row;
   background-color: cadetblue;
-  position: sticky;
+  position: fixed;
+  width: 100vw;
   justify-content: center;
+  top: 0;
+}
+
+a {
+  color: darkcyan;
+  text-decoration: none;
+}
+
+a:visited {
+  color: darkslategray;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darkslateblue;
+  text-decoration: underline;
 }
 
 nav :first-child {
@@ -41,5 +61,7 @@ nav a:hover {
 
 nav a:active {
   border-width: 0.1em 0 0 0.1em;
-  margin: 0.6em 0.5em 0.5em 0.6em;
+  margin-top: 0.6em;
+  margin-bottom: 0.5em;
+  margin-left: 0.6em;
 }

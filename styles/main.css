@@ -26,17 +26,15 @@ nav {
 
 a {
   color: darkcyan;
-  text-decoration: none;
 }
 
 a:visited {
   color: darkslategray;
-  text-decoration: none;
 }
 
 a:hover {
   color: darkslateblue;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 nav :first-child {

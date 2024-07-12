@@ -4,11 +4,14 @@ title: Projects
 ---
 
 <ul>
-  {% for page in site.pages %} {% if page.url contains "/projects/" %}
-  <li>
-    <a href="{{page.url}}">{{page.title}}</a>
-    <br />
-    {{page.description}}
-  </li>
-  {% endif %} {% endfor %}
+  {% for page in site.pages %}
+    {% assign segments = page.url | split: "/" %}
+    {% if segments.size >= 2 and segments[1] == "projects" %}
+      <li>
+        <a href="{{page.url}}">{{page.title}}</a>
+        <br />
+        {{page.description}}
+      </li>
+    {% endif %}
+  {% endfor %}
 </ul>

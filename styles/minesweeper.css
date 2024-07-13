@@ -1,0 +1,27 @@
+table {
+  margin: auto;
+}
+
+th {
+  width: 2em;
+  height: 2em;
+  margin: 1em;
+  background-color: darkgray;
+  border-radius: 4px;
+  border: 2px solid;
+}
+
+th.unknown {
+  border-bottom-color: darkslategray;
+  border-right-color: darkslategray;
+  border-top-color: lightgray;
+  border-left-color: lightgray;
+}
+
+th.unknown:hover {
+  background-color: lightgray;
+  border-bottom-color: darkgray;
+  border-right-color: darkgray;
+  border-top-color: white;
+  border-left-color: white;
+}

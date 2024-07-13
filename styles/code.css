@@ -42,8 +42,9 @@ code span.mi {
   color: lightpink;
 }
 
-/* language keyword */
+/* language keywords */
 code span.k,
+code span.kn,
 code span.kt,
 code span.kd {
   color: violet;

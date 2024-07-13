@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="/styles/main.css" />
     {% if content contains "pre" %}
     <link rel="stylesheet" href="/styles/code.css" />
-    {% endif %}
+    {% endif %} {% for script in page.scripts %}
+    <script type="text/javascript" src="/scripts/{{script}}.js"></script>
+    {% endfor %} {% for style in page.styles %}
+    <link rel="stylesheet" href="/styles/{{style}}.css" />
+    {% endfor %}
   </head>
   <body>
     <nav>
       <a href="/" class="button">Home</a>
       <a href="/projects" class="button">Projects</a>
       <a href="/posts" class="button">Posts</a>
+      <a href="/games" class="button">Games</a>
     </nav>
     <section>
       {% if page.title %}

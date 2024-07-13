@@ -25,3 +25,42 @@ th.unknown:hover {
   border-top-color: white;
   border-left-color: white;
 }
+
+th.empty {
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+th.flag {
+  background-color: brown;
+}
+
+th.n1 {
+  color: cornflowerblue;
+}
+
+th.n2 {
+  color: darkgreen;
+}
+
+th.n3 {
+  color: darkred;
+}
+
+th.n4 {
+  color: darkviolet;
+}
+
+th.n5 {
+}
+
+th.n6 {
+  color: darkcyan;
+}
+
+th.n7 {
+}
+
+th.n8 {
+}

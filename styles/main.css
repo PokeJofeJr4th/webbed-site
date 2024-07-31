@@ -1,3 +1,9 @@
+* {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
 body {
   background-color: darkslategray;
   margin: 0;
@@ -5,7 +11,7 @@ body {
 }
 
 section {
-  width: min(90vw, 40em);
+  width: calc(min(90vw, 40em) - 4em);
   min-height: calc(100vh - 14em);
   margin: auto;
   margin-top: 5em;
@@ -38,7 +44,12 @@ a:hover {
 }
 
 nav :first-child {
-  margin-right: 20vw;
+  margin-right: max(0.6em, calc(70vw - min(100vw, 20em) + 3.2em));
+}
+
+nav .button {
+  width: calc(min(20vw, 5em) - 0.8em);
+  text-align: center;
 }
 
 .button {

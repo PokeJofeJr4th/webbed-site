@@ -4,12 +4,14 @@ modules: qr_wasm
 ---
 
 <script type="module">
-  import { qrgen } from "/scripts/qr_wasm.js";
-  const qrcode = document.getElementById("qrcode");
-  const data = document.getElementById("data");
-  document.getElementById("qr_button").onclick = () => {
-    qrcode.src = qrgen(data.value);
-  };
+  import init, { qrgen } from "/scripts/qr_wasm.js";
+  init().then((_) => {
+    const qrcode = document.getElementById("qrcode");
+    const data = document.getElementById("data");
+    document.getElementById("qr_button").onclick = () => {
+      qrcode.src = qrgen(data.value);
+    };
+  });
 </script>
 <img id="qrcode" style="width: 90%; aspect-ratio: 1" />
 <br />

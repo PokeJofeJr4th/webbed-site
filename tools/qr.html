@@ -3,11 +3,15 @@ layout: default
 modules: qr_wasm
 ---
 
+<script type="module">
+  import { qrgen } from "/qr_wasm.js";
+  const qrcode = document.getElementById("qrcode");
+  const data = document.getElementById("data");
+  document.getElementById("qr_button").onclick = () => {
+    qrcode.src = qrgen(data.value);
+  };
+</script>
 <img id="qrcode" style="width: 90%; aspect-ratio: 1" />
 <br />
 <input id="data" type="text" />
-<button
-  onclick="document.getElementById('qrcode').src = import('./qr_wasm').then(qr_wasm => qr_wasm.qrgen(document.getElementById('data').value))"
->
-  Generate
-</button>
+<button id="qr_button">Generate</button>

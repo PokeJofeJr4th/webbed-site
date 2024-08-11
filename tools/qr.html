@@ -12,8 +12,10 @@ sectionClassName: center
     const qrcode = document.getElementById("qrcode");
     const data = document.getElementById("data");
     const correction = document.getElementById("correction_level");
-    document.getElementById("qr_button").onclick = () => {
+    const qr_btn = document.getElementById("qr_button");
+    qr_btn.onclick = () => {
       qrcode.src = qrgen(data.value, parseInt(correction.value));
+      qr_btn.disabled = true;
     };
     document.getElementById("download_btn").onclick = () => {
       var link = document.createElement("a");
@@ -38,24 +40,33 @@ sectionClassName: center
     };
   });
 </script>
+<br />
+<div>
+  Error Correction:
+  <select name="correction_level" id="correction_level">
+    <option value="0">7%</option>
+    <option value="1">10%</option>
+    <option value="2" selected="true">25% (default)</option>
+    <option value="3">30%</option>
+  </select>
+</div>
+<div>
+  Content:
+  <input id="data" type="text" />
+</div>
+<button id="qr_button" class="button dark">Generate</button>
 <img
   id="qrcode"
   style="width: 90%; aspect-ratio: 1"
   src="/static/qr_tool.png"
 />
-<br />
 <div>
-  <select name="correction_level" id="correction_level">
-    <option value="0">7% correction</option>
-    <option value="1">10% correction</option>
-    <option value="2" selected="true">25% correction (default)</option>
-    <option value="3">30% correction</option>
-  </select>
-  <input id="data" type="text" />
-</div>
-<div>
-  <button id="qr_button" class="button dark">Generate</button>
-  <button id="download_btn" class="button dark" aria-label="Download Image">
+  <button
+    id="download_btn"
+    class="button dark"
+    style="aspect-ratio: 1; display: inline; vertical-align: middle"
+    aria-label="Download Image"
+  >
     <svg
       width="1em"
       height="1em"
@@ -73,7 +84,12 @@ sectionClassName: center
       />
     </svg>
   </button>
-  <button id="copy_btn" class="button dark" aria-label="Copy Image">
+  <button
+    id="copy_btn"
+    class="button dark"
+    style="aspect-ratio: 1; display: inline; vertical-align: middle"
+    aria-label="Copy Image"
+  >
     <svg
       width="1em"
       height="1em"

@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="/styles/code.css" />
     {% endif %} {% for script in page.scripts %}
     <script type="text/javascript" src="/scripts/{{script}}.js"></script>
-    {% endfor %}{% for script in page.wasm %}
-    <script type="wasm" src="/scripts/{{script}}.wasm"></script>
+    {% endfor %}{% for script in page.modules %}
+    <script type="module" src="/scripts/{{script}}.js"></script>
     {% endfor %} {% for style in page.styles %}
     <link rel="stylesheet" href="/styles/{{style}}.css" />
     {% endfor %}

@@ -7,7 +7,7 @@ modules: qr_wasm
 <br />
 <input id="data" type="text" />
 <button
-  onclick="document.getElementById('qrcode').src = import('qr_wasm').qrgen(document.getElementById('data').value)"
+  onclick="document.getElementById('qrcode').src = import('./qr_wasm').then(qr_wasm => qr_wasm.qrgen(document.getElementById('data').value))"
 >
   Generate
 </button>

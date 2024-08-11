@@ -179,16 +179,17 @@ function addHeapObject(obj) {
 /**
 * Create a URL for the given data to be encoded as a QR code
 * @param {string} data
+* @param {number} correction_level
 * @returns {string}
 */
-export function qrgen(data) {
+export function qrgen(data, correction_level) {
     let deferred2_0;
     let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(data, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.qrgen(retptr, ptr0, len0);
+        wasm.qrgen(retptr, ptr0, len0, correction_level);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         deferred2_0 = r0;

@@ -14,7 +14,9 @@ sectionClassName: center
     const correction = document.getElementById("correction_level");
     const qr_btn = document.getElementById("qr_button");
     qr_btn.onclick = () => {
-      qrcode.src = qrgen(data.value, parseInt(correction.value));
+      qrcode.src = URL.createObjectURL(
+        new Blob([qrgen(data.value, parseInt(correction.value))])
+      );
       qr_btn.disabled = true;
     };
     document.getElementById("download_btn").onclick = () => {

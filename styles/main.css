@@ -20,6 +20,10 @@ section {
   background-color: white;
 }
 
+.center {
+  text-align: center;
+}
+
 nav {
   display: flex;
   flex-direction: row;
@@ -63,8 +67,18 @@ nav .button {
   text-decoration: none;
 }
 
+.button.dark {
+  background-color: darkcyan;
+  color: aliceblue;
+  border-color: black;
+}
+
 .button:hover {
   background-color: aliceblue;
+}
+
+.button.dark:hover {
+  background-color: cadetblue;
 }
 
 .button:active {
@@ -78,6 +92,7 @@ h1 {
   text-align: center;
   font-family: sans-serif;
   color: darkcyan;
+  font-size: 2em;
 }
 
 h1 + a {

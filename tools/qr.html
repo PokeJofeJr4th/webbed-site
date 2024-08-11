@@ -1,6 +1,9 @@
 ---
 layout: default
 modules: qr_wasm
+title: Qr Code Generator
+description: Easily generate QR codes for arbitrary text data
+sectionClassName: center
 ---
 
 <script type="module">
@@ -13,7 +16,11 @@ modules: qr_wasm
     };
   });
 </script>
-<img id="qrcode" style="width: 90%; aspect-ratio: 1" />
+<img
+  id="qrcode"
+  style="width: 90%; aspect-ratio: 1"
+  src="/static/qr_tool.png"
+/>
 <br />
 <input id="data" type="text" />
-<button id="qr_button">Generate</button>
+<button id="qr_button" class="button dark">Generate</button>

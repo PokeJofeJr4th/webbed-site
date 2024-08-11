@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Games
+title: Tools
 ---
 
 <ul>
   {% for page in site.pages %} {% assign segments = page.url | split: "/" %} {%
-  if segments.size >= 2 and segments[1] == "games" %}
+  if segments.size >= 2 and segments[1] == "tools" %}
   <li>
     <a href="{{page.url}}">{{page.title}}</a>
     <br />

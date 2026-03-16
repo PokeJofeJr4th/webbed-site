@@ -26,10 +26,7 @@ nav :first-child {
 
 nav .button {
   min-width: calc(min(20vw, 10em) - 0.8em);
-  text-align: center;
-}
-
-nav .button {
+  text-align: left;
   background-color: #eee0bb;
   color: #000033;
   border: solid #000033;

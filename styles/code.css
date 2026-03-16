@@ -2,16 +2,26 @@
 pre {
   overflow-x: scroll;
   padding-bottom: 1em;
-  background-color: black;
-  border-radius: 1em;
   padding: 1em;
   margin-right: 10em;
   margin-left: 10em;
   text-align: left;
+  border-radius: 1em;
+  background-color: black;
+  color: white;
+}
+
+code {
+  border-radius: 0.2em;
+  padding-right: 0.4em;
+  padding-left: 0.4em;
+  background-color: black;
+  color: white;
 }
 
 pre code {
-  color: white;
+  padding: 0;
+  border-radius: 0;
 }
 
 /* Name of a Class */

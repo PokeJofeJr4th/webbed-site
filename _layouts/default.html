@@ -23,7 +23,9 @@
       <a href="/" class="button current">Home</a>
       {% else %}
       <a href="/" class="button">Home</a>
-      {% endif %} {% if page.url contains "/projects" %}
+      {% endif %}
+      <div style="flex-grow: 100;"></div>
+      {% if page.url contains "/projects" %}
       <a href="/projects" class="button current">Projects</a>
       {% else %}
       <a href="/projects" class="button">Projects</a>

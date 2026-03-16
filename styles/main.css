@@ -20,10 +20,6 @@ nav {
   left: 0;
 }
 
-nav :first-child {
-  margin-right: max(0.6em, calc(70vw - min(100vw, 20em) + 3.2em)) !important;
-}
-
 nav .button {
   min-width: calc(min(20vw, 10em) - 0.8em);
   text-align: left;
@@ -69,10 +65,11 @@ section {
   align-items: center;
   text-align: center;
   rotate: 0.7deg;
+  transition-duration: 0.1s;
 }
 
 section:hover {
-  rotate: 0;
+  rotate: 0deg;
 }
 
 section h1 {
@@ -80,14 +77,14 @@ section h1 {
 }
 
 section p {
-  padding: 0 10em;
+  padding: 0 6em;
   text-align: left;
   line-height: 3em;
 }
 
 section ul {
   margin: auto;
-  padding: 0 10em;
+  padding: 0 6em;
   line-height: 3em;
   width: 60%;
   list-style: "-  " outside none;
@@ -140,8 +137,10 @@ div.polaroid div.container {
 }
 
 footer {
-  color: #333355;
-  font-size: small;
+  color: #666688;
+  font-size: x-small;
+  margin-top: 4em;
+  padding-bottom: 2em;
 }
 
 button {
@@ -168,4 +167,22 @@ button.large {
   padding: 1em;
   border-radius: 1em;
   font-size: large;
+}
+
+@media (max-width: 600px) {
+  section {
+    rotate: 0deg;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 4em 0;
+  }
+
+  section p {
+    padding: 0 2em;
+  }
+
+  section ul {
+    padding: 0 2em;
+  }
 }

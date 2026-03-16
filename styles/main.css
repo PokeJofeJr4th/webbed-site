@@ -146,3 +146,29 @@ footer {
   color: #333355;
   font-size: small;
 }
+
+button {
+  padding: 0.2em;
+  background-color: #ffffff;
+  border: #000033 solid 1px;
+  font-family: inherit;
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+
+button:hover {
+  border-color: #1111dd;
+  color: #1111dd;
+}
+
+button:active {
+  border-color: #3333aa;
+  color: #3333aa;
+}
+
+button.large {
+  margin: 0.75em;
+  padding: 1em;
+  border-radius: 1em;
+  font-size: large;
+}

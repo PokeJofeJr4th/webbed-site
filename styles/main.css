@@ -3,146 +3,146 @@
   word-spacing: inherit;
 }
 
-body {
-  background-color: darkslategray;
-  margin: 0;
-  min-height: 80vh;
+html {
+  font-family: "Courier New", Courier, monospace;
+  color: #000033;
+  background-color: #fff0cc;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #888080;
+  position: fixed;
+  width: 100vw;
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+nav :first-child {
+  margin-right: max(0.6em, calc(70vw - min(100vw, 20em) + 3.2em)) !important;
+}
+
+nav .button {
+  min-width: calc(min(20vw, 10em) - 0.8em);
+  text-align: center;
+}
+
+nav .button {
+  background-color: #eee0bb;
+  color: #000033;
+  border: solid #000033;
+  border-radius: 0.5em;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 0.6em;
+  border-width: 0 0 0 0.05em;
+  margin: 0.5em 0.3em 0;
+  text-decoration: none;
+}
+
+nav .button.current {
+  background-color: #fff0cc;
+}
+
+nav .button:hover {
+  background-color: #ddd0aa;
+}
+
+nav .button:active {
+  border-width: 0 0.05em 0 0;
+}
+
+img#paper-clip {
+  position: absolute;
+  width: 4%;
+  right: 8em;
+  top: -1em;
 }
 
 section {
-  width: calc(min(90vw, 40em) - 4em);
-  min-height: calc(100vh - 14em);
+  position: relative;
+  aspect-ratio: 17 / 22;
   margin: auto;
   margin-top: 5em;
-  margin-bottom: 5em;
-  padding: 2em;
+  min-width: 50%;
+  max-width: 80%;
+  background-color: #fff8ee;
+  align-items: center;
+  text-align: center;
+  rotate: 0.7deg;
+}
+
+section:hover {
+  rotate: 0;
+}
+
+section h1 {
+  padding: 1em;
+}
+
+section p {
+  padding: 0 10em;
+  text-align: left;
+  line-height: 3em;
+}
+
+section ul {
+  margin: auto;
+  padding: 0 10em;
+  line-height: 3em;
+  width: 60%;
+  list-style: "-  " outside none;
+  text-align: left;
+}
+
+section p::before {
+  content: "\00A0\00A0\00A0\00A0";
+}
+
+section a {
+  color: #000033;
+  font-weight: bold;
+}
+
+section a:hover {
+  color: #1111dd;
+}
+
+section a:visited {
+  color: #3333aa;
+}
+
+div.polaroid {
+  rotate: -6deg;
+  margin-top: -5em;
+  margin-left: auto;
+  margin-right: 10em;
+  max-width: 40%;
   background-color: white;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+}
+
+div.polaroid img {
+  width: 100%;
+  filter: sepia(30%);
+  border-radius: 4px;
+}
+
+div.polaroid div.container {
+  text-align: center;
+  padding: 10px 20px;
 }
 
 .center {
   text-align: center;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  background-color: cadetblue;
-  position: fixed;
-  width: 100vw;
-  justify-content: center;
-  top: 0;
-}
-
-a {
-  color: darkcyan;
-}
-
-a:visited {
-  color: darkslategray;
-}
-
-a:hover {
-  color: darkslateblue;
-  text-decoration: none;
-}
-
-nav :first-child {
-  margin-right: max(0.6em, calc(70vw - min(100vw, 20em) + 3.2em));
-}
-
-nav .button {
-  width: calc(min(20vw, 5em) - 0.8em);
-  text-align: center;
-}
-
-.button {
-  background-color: lightcyan;
-  color: darkcyan;
-  border: solid darkcyan;
-  border-radius: 0.5em;
-  padding: 0.4em;
-  border-width: 0 0.1em 0.1em 0;
-  margin: 0.5em 0.6em 0.6em 0.5em;
-  text-decoration: none;
-}
-
-.button.dark {
-  background-color: darkcyan;
-  color: aliceblue;
-  border-color: black;
-}
-
-.button:hover {
-  background-color: aliceblue;
-}
-
-.button.dark:hover {
-  background-color: cadetblue;
-}
-
-.button:active {
-  border-width: 0.1em 0 0 0.1em;
-  margin-bottom: 0.6em;
-  margin-top: 0.5em;
-}
-
-h1 {
-  text-align: center;
-  font-family: sans-serif;
-  color: darkcyan;
-  font-size: 2em;
-}
-
-h1 + a {
-  text-align: center;
-  display: block;
-  font-style: italic;
-}
-
-select {
-  padding: 0.4em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  color: #333;
-  font-size: 16px;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-select:hover {
-  border-color: #888;
-  background-color: #f1f1f1;
-}
-
-select option {
-  background-color: #ffffff;
-  color: #333;
-  padding: 0.4em;
-}
-
-select option:hover {
-  background-color: #ddd;
-}
-
-input[type="text"] {
-  padding: 0.4em 0.6em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  color: #333;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-input[type="text"]:hover {
-  border-color: #888;
-  background-color: #f1f1f1;
-}
-
 footer {
-  margin-top: 2em;
-  text-align: center;
-  font-size: 0.75em;
+  color: #333355;
+  font-size: small;
 }

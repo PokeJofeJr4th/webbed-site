@@ -22,12 +22,15 @@ public String toString() {
     return this.name + ", a " + this.age + "-year-old " + this.profession;
 }
 ```
+
 When compiled, this code will generate a dynamic invocation like the following to give the required method handle:
+
 ```java
 StringConcatFactory.makeConcatWithConstants(..., Function<String (String, int, String)>, "\u{1}, a \u{1}-year-old \u{1}")
 ```
 
 It then invokes this method, passing in the name, age, and profession to create the final interpolated string.
+
 #### Lambda Objects
 
 Another use for the `invokedynamic` instruction is for lambda objects. These are implementations of a single-method interface that can be trivially instantiated in source code by providing an implementation of the overrided method. Unlike an anonymous class, there is no associated class file for a lambda.
@@ -56,4 +59,5 @@ The `<init>` method is always a void, but its number and type of arguments match
 The `<clinit>` is where logic for initializing static state for a class is located. It is always a avoid that takes no parameters. It is invoked the first time any static state is referenced. This method includes the constructors for the default values of any static variables as well as the code content of any static block.
 
 #### Enums
+
 Java enums include much of their logic in the `<clinit>` function. This includes the initialization of all of its variants as well as creating the array that is used by the `Enum.values()` method.

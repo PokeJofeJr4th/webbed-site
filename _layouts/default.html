@@ -16,9 +16,6 @@
     {% endfor %} {% for style in page.styles %}
     <link rel="stylesheet" href="/styles/{{style}}.css" />
     {% endfor %}
-    <script>
-      let __;
-    </script>
   </head>
   <body>
     <nav>
@@ -39,7 +36,6 @@
       {% else %}
       <a href="/tools" class="button">Tools</a>
       {% endif %}
-      <!-- <a href="/games" class="button">Games</a> -->
     </nav>
     <section
       {%

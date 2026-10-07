@@ -97,21 +97,26 @@ let board = new Set(
  * The set of board states that result in a win for the player moving into them.
  */
 let p_positions = solve(board);
+let attemptNumber = 1;
+let currentMove = 0;
+let blundered = false;
 
 const chomp = {
   SIZE,
   squares: [],
+  blunders: [],
   click: (i, j) => {
     if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
     if (board.size == 0) {
-      chomp.onWin?.();
-      // TODO: more winning logic
+      chomp.onWin?.(attemptNumber, chomp.blunders, currentMove);
       return;
     }
-    if (!p_positions.has(boardToString(board))) {
-      console.log("Blunder");
+    currentMove += 1;
+    if (!p_positions.has(boardToString(board)) && !blundered) {
+      blundered = true;
+      chomp.blunders.push(currentMove);
     }
     for (let move of board) {
       let next = makeMove(board, move);
@@ -127,7 +132,9 @@ const chomp = {
               (_, i) => `${Math.floor((i + 1) / SIZE)},${(i + 1) % SIZE}`,
             ),
           );
-          console.log(board);
+          attemptNumber += 1;
+          blundered = false;
+          currentMove = 0;
           for (const move of [...board]) {
             const [i, j] = parseMove(move);
             chomp.squares[i][j].style.backgroundColor = "black";

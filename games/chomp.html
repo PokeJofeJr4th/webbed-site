@@ -24,6 +24,11 @@ sectionClassName: center
 
 <script type="module">
   import { chomp } from "/scripts/game_chomp.js";
+
+  var shareText = "";
+
+  document.getElementById("page-title").innerText = "Chomp #0";
+
   const gameElement = document.getElementById("game");
   chomp.squares = [];
   for (let i = 0; i < chomp.SIZE; i++) {
@@ -47,10 +52,40 @@ sectionClassName: center
   chomp.squares[0][0].style.backgroundColor = "darkgreen";
 
   const winModal = document.getElementById("game-win");
-  chomp.onWin = () => winModal.showModal();
+  chomp.onWin = (attemptNumber, blunders, currentMove) => {
+    const children = [];
+    shareText = "Chomp #0\n";
+
+    for (let i = 0; i < blunders.length; i++) {
+      children.push(
+        Object.assign(document.createElement("p"), {
+          innerText: `Attempt ${i + 1}: Blunder on move ${blunders[i]}`,
+        }),
+      );
+      shareText += `❌Blunder on move ${blunders[i]}\n`;
+    }
+
+    children.push(
+      Object.assign(document.createElement("p"), {
+        innerText: `Attempt ${blunders.length + 1}: Won in ${currentMove + 1} moves`,
+      }),
+    );
+    shareText += `✅Won in ${currentMove + 1} move(s)\nhttps://abigailjc.dev/games/chomp`;
+
+    const description = document.getElementById("game-win-description");
+    console.log(children);
+    description.replaceChildren(...children);
+    winModal.showModal();
+  };
 
   const loseModal = document.getElementById("game-lose");
   chomp.onLose = () => loseModal.showModal();
+
+  const gameShare = document.getElementById("game-share");
+  gameShare.onclick = () => {
+    navigator.clipboard.writeText(shareText);
+    gameShare.innerText = "Copied to Clipboard";
+  };
 </script>
 
 <dialog id="game-info" closedby="any">
@@ -68,8 +103,9 @@ sectionClassName: center
 </dialog>
 <dialog id="game-win" closedby="any">
   <h3>You Won!</h3>
+  <div id="game-win-description"></div>
   <p>Congration</p>
-  <button commandfor="game-win" command="close">Yay</button>
+  <button id="game-share">Share</button>
 </dialog>
 <dialog id="game-lose" closedby="any">
   <h3>You lost!</h3>

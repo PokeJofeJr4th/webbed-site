@@ -1,4 +1,8 @@
-const SIZE = 5;
+import random from "/scripts/random.js";
+
+const rand = random.fromSeed(new Date().toLocaleDateString("en-US"));
+
+const SIZE = 6;
 
 function boardToString(board) {
   return [...board].toSorted().join(";");
@@ -87,24 +91,53 @@ function updateBoard(move) {
 /**
  * The set of positions currently on the board. Each position is represented as a string "x,y". (0,0) is omitted.
  */
-let board = new Set(
+let full_board = new Set(
   Array.from(
     { length: SIZE * SIZE - 1 },
     (_, i) => `${Math.floor((i + 1) / SIZE)},${(i + 1) % SIZE}`,
   ),
 );
+
 /**
  * The set of board states that result in a win for the player moving into them.
  */
-let p_positions = solve(board);
+let p_positions = solve(full_board);
 let attemptNumber = 1;
 let currentMove = 0;
 let blundered = false;
+let board;
+
+while (true) {
+  board = new Set(full_board);
+  if (rand() > 0.5) {
+    board = makeMove(board, [SIZE - 1, 0]);
+  } else {
+    board = makeMove(board, [0, SIZE - 1]);
+  }
+  for (let i = 0; i < 2; i++) {
+    board = makeMove(board, [
+      Math.floor(rand() * (SIZE - 1)),
+      Math.floor(rand() * (SIZE - 1)),
+    ]);
+  }
+  if (!p_positions.has(boardToString(board))) break;
+}
+
+full_board = new Set(board);
 
 const chomp = {
   SIZE,
   squares: [],
   blunders: [],
+  init: () => {
+    for (let i = 0; i < SIZE; i++) {
+      for (let j = 0; j < SIZE; j++) {
+        if (!board.has(`${i},${j}`)) {
+          chomp.squares[i][j].style.backgroundColor = "#fff8ee";
+        }
+      }
+    }
+  },
   click: (i, j) => {
     if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
@@ -126,12 +159,7 @@ const chomp = {
         updateBoard(move);
         if (board.size == 0) {
           chomp.onLose?.();
-          board = new Set(
-            Array.from(
-              { length: SIZE * SIZE - 1 },
-              (_, i) => `${Math.floor((i + 1) / SIZE)},${(i + 1) % SIZE}`,
-            ),
-          );
+          board = new Set(full_board);
           attemptNumber += 1;
           blundered = false;
           currentMove = 0;
@@ -149,4 +177,4 @@ const chomp = {
   },
 };
 
-export { chomp };
+export default chomp;

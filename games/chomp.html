@@ -1,8 +1,8 @@
 ---
 layout: default
-modules: game_chomp
 title: Chomp
-description:
+modules: random
+description: A daily game about chomping squares
 sectionClassName: center
 ---
 
@@ -24,11 +24,14 @@ sectionClassName: center
 </style>
 
 <script type="module">
-  import { chomp } from "/scripts/game_chomp.js";
+  import chomp from "/scripts/game_chomp.js";
 
   var shareText = "";
+  const chompNumber = Math.floor(
+    (new Date() - new Date("10/07/2026")) / 8.64e7,
+  );
 
-  document.getElementById("page-title").innerText = "Chomp #0";
+  document.getElementById("page-title").innerText = "Chomp #" + chompNumber;
 
   const gameElement = document.getElementById("game");
   chomp.squares = [];
@@ -54,12 +57,15 @@ sectionClassName: center
     chomp.squares.push(row);
   }
   chomp.squares.reverse();
-  chomp.squares[0][0].style.backgroundColor = "darkgreen";
 
+  chomp.init();
+
+  chomp.squares[0][0].style.backgroundColor = "darkgreen";
+  
   const winModal = document.getElementById("game-win");
   chomp.onWin = (attemptNumber, blunders, currentMove) => {
     const children = [];
-    shareText = "Chomp #0\n";
+    shareText = `Chomp #${chompNumber}\n`;
 
     for (let i = 0; i < blunders.length; i++) {
       children.push(
@@ -109,7 +115,7 @@ sectionClassName: center
 </script>
 
 <dialog id="game-info" closedby="any">
-  <h3>How to Play 2</h3>
+  <h3>How to Play</h3>
   <p>
     Chomp is played on a grid of squares. Click on a square to remove it and all
     squares above and to the right of it. You can't click the bottom left

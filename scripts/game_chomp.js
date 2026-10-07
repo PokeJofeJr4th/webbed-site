@@ -79,7 +79,7 @@ function updateBoard(move) {
   move = parseMove(move);
   for (let i = move[0]; i < SIZE; i++) {
     for (let j = move[1]; j < SIZE; j++) {
-      chomp.squares[i][j].style.backgroundColor = "white";
+      chomp.squares[i][j].style.backgroundColor = "#fff8ee";
     }
   }
 }

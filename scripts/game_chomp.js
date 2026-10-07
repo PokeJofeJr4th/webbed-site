@@ -6,6 +6,10 @@ const SIZE = 5;
 
 let locked = false;
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function boardToString(board) {
   return [...board].toSorted().join(";");
 }
@@ -137,6 +141,7 @@ const chomp = {
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
     if (board.size == 0) {
+      await delay(500);
       chomp.onWin?.(attemptNumber, chomp.blunders, currentMove);
       locked = false;
       return;
@@ -147,7 +152,7 @@ const chomp = {
       chomp.blunders.push(currentMove);
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await delay(500);
 
     for (let move of board) {
       let next = makeMove(board, move);
@@ -155,7 +160,10 @@ const chomp = {
       if (p_positions.has(next_str)) {
         board = makeMove(board, move);
         updateBoard(move);
-        if (board.size == 0) chomp.try_again();
+        if (board.size == 0) {
+          await delay(500);
+          chomp.try_again();
+        }
         locked = false;
         return;
       }

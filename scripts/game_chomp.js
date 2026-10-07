@@ -106,13 +106,13 @@ const chomp = {
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
     if (board.size == 0) {
-      console.log("You win!");
+      chomp.onWin?.();
+      // TODO: more winning logic
       return;
     }
     if (!p_positions.has(boardToString(board))) {
       console.log("Blunder");
     }
-
     for (let move of board) {
       let next = makeMove(board, move);
       let next_str = boardToString(next);
@@ -120,7 +120,18 @@ const chomp = {
         board = makeMove(board, move);
         updateBoard(move);
         if (board.size == 0) {
-          console.log("You lose!");
+          chomp.onLose?.();
+          board = new Set(
+            Array.from(
+              { length: SIZE * SIZE - 1 },
+              (_, i) => `${Math.floor((i + 1) / SIZE)},${(i + 1) % SIZE}`,
+            ),
+          );
+          console.log(board);
+          for (const move of [...board]) {
+            const [i, j] = parseMove(move);
+            chomp.squares[i][j].style.backgroundColor = "black";
+          }
         }
         return;
       }

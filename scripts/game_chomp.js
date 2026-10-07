@@ -2,7 +2,9 @@ import random from "/scripts/random.js";
 
 const rand = random.fromSeed(new Date().toLocaleDateString("en-US"));
 
-const SIZE = 6;
+const SIZE = 5;
+
+let locked = false;
 
 function boardToString(board) {
   return [...board].toSorted().join(";");
@@ -16,9 +18,7 @@ function parseMove(move) {
   if (typeof move == "string") {
     move = move.split(",");
     return [parseInt(move[0]), parseInt(move[1])];
-  } else {
-    return move;
-  }
+  } else return move;
 }
 
 /**
@@ -81,11 +81,9 @@ function makeMove(board, move) {
  */
 function updateBoard(move) {
   move = parseMove(move);
-  for (let i = move[0]; i < SIZE; i++) {
-    for (let j = move[1]; j < SIZE; j++) {
+  for (let i = move[0]; i < SIZE; i++)
+    for (let j = move[1]; j < SIZE; j++)
       chomp.squares[i][j].style.backgroundColor = "#fff8ee";
-    }
-  }
 }
 
 /**
@@ -109,11 +107,8 @@ let board;
 
 while (true) {
   board = new Set(full_board);
-  if (rand() > 0.5) {
-    board = makeMove(board, [SIZE - 1, 0]);
-  } else {
-    board = makeMove(board, [0, SIZE - 1]);
-  }
+  if (rand() > 0.5) board = makeMove(board, [SIZE - 1, 0]);
+  else board = makeMove(board, [0, SIZE - 1]);
   for (let i = 0; i < 2; i++) {
     board = makeMove(board, [
       Math.floor(rand() * (SIZE - 1)),
@@ -130,20 +125,20 @@ const chomp = {
   squares: [],
   blunders: [],
   init: () => {
-    for (let i = 0; i < SIZE; i++) {
-      for (let j = 0; j < SIZE; j++) {
-        if (!board.has(`${i},${j}`)) {
+    for (let i = 0; i < SIZE; i++)
+      for (let j = 0; j < SIZE; j++)
+        if (!board.has(`${i},${j}`))
           chomp.squares[i][j].style.backgroundColor = "#fff8ee";
-        }
-      }
-    }
   },
-  click: (i, j) => {
+  click: async (i, j) => {
+    if (locked) return;
+    locked = true;
     if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
     if (board.size == 0) {
       chomp.onWin?.(attemptNumber, chomp.blunders, currentMove);
+      locked = false;
       return;
     }
     currentMove += 1;
@@ -151,29 +146,35 @@ const chomp = {
       blundered = true;
       chomp.blunders.push(currentMove);
     }
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     for (let move of board) {
       let next = makeMove(board, move);
       let next_str = boardToString(next);
       if (p_positions.has(next_str)) {
         board = makeMove(board, move);
         updateBoard(move);
-        if (board.size == 0) {
-          chomp.onLose?.();
-          board = new Set(full_board);
-          attemptNumber += 1;
-          blundered = false;
-          currentMove = 0;
-          for (const move of [...board]) {
-            const [i, j] = parseMove(move);
-            chomp.squares[i][j].style.backgroundColor = "black";
-          }
-        }
+        if (board.size == 0) chomp.try_again();
+        locked = false;
         return;
       }
     }
     let move = [...board][Math.floor(Math.random() * board.size)];
     board = makeMove(board, move);
     updateBoard(move);
+    locked = false;
+  },
+  try_again: () => {
+    chomp.onLose?.();
+    board = new Set(full_board);
+    attemptNumber += 1;
+    blundered = false;
+    currentMove = 0;
+    for (const move of [...board]) {
+      const [i, j] = parseMove(move);
+      chomp.squares[i][j].style.backgroundColor = "black";
+    }
   },
 };
 

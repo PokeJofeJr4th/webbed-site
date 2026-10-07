@@ -13,6 +13,7 @@ sectionClassName: center
     min-height: 2em;
     max-width: 2em;
     min-width: 2em;
+    transition-duration: 0.2s;
   }
 
   #game .row {
@@ -42,6 +43,10 @@ sectionClassName: center
       element.addEventListener("click", () =>
         chomp.click(chomp.SIZE - 1 - i, j),
       );
+      element.addEventListener("mouseenter", () =>
+        handleMouseEnter(chomp.SIZE - 1 - i, j),
+      );
+      element.addEventListener("mouseleave", handleMouseLeave);
       row.push(element);
       rowElement.appendChild(element);
     }
@@ -86,6 +91,24 @@ sectionClassName: center
     navigator.clipboard.writeText(shareText);
     gameShare.innerText = "Copied to Clipboard";
   };
+
+  function handleMouseEnter(i, j) {
+    for (let ii = i; ii < chomp.SIZE; ii++) {
+      for (let jj = j; jj < chomp.SIZE; jj++) {
+        console.log(ii, jj);
+        chomp.squares[ii][jj].style.opacity = "0.5";
+      }
+    }
+  }
+
+  function handleMouseLeave() {
+    for (let i = 0; i < chomp.SIZE; i++) {
+      for (let j = 0; j < chomp.SIZE; j++) {
+        console.log(i, j);
+        chomp.squares[i][j].style.opacity = "1.0";
+      }
+    }
+  }
 </script>
 
 <dialog id="game-info" closedby="any">

@@ -105,6 +105,13 @@ const chomp = {
     if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
+    if (board.size == 0) {
+      console.log("You win!");
+      return;
+    }
+    if (!p_positions.has(boardToString(board))) {
+      console.log("Blunder");
+    }
 
     for (let move of board) {
       let next = makeMove(board, move);
@@ -112,10 +119,13 @@ const chomp = {
       if (p_positions.has(next_str)) {
         board = makeMove(board, move);
         updateBoard(move);
+        if (board.size == 0) {
+          console.log("You lose!");
+        }
         return;
       }
     }
-    let move = board.keys().next().value;
+    let move = [...board][Math.floor(Math.random() * board.size)];
     board = makeMove(board, move);
     updateBoard(move);
   },

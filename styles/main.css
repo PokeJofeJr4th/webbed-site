@@ -169,6 +169,23 @@ button.large {
   font-size: large;
 }
 
+dialog {
+  width: 30em;
+  height: 30em;
+  border: none;
+  padding: auto;
+  margin: auto;
+  background-color: #eeeeaa;
+}
+
+dialog p {
+  padding: 0;
+}
+
+dialog:hover {
+  rotate: 0;
+}
+
 @media (max-width: 600px) {
   section {
     rotate: 0deg;

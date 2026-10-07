@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?" />
     <title>{{page.title}} | Abigail JC</title>
     <link rel="stylesheet" href="/styles/main.css" />
-    {% if content contains "pre" %}
+    {% if content contains "<pre" %}
     <link rel="stylesheet" href="/styles/code.css" />
     {% endif %} {% for script in page.scripts %}
     <script type="text/javascript" src="/scripts/{{script}}.js"></script>
@@ -37,6 +37,10 @@
       <a href="/tools" class="button current">Tools</a>
       {% else %}
       <a href="/tools" class="button">Tools</a>
+      {% endif %} {% if page.url contains "/games" %}
+      <a href="/games" class="button current">Games</a>
+      {% else %}
+      <a href="/games" class="button">Games</a>
       {% endif %}
     </nav>
     <section

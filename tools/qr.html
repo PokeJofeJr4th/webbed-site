@@ -1,13 +1,13 @@
 ---
 layout: default
-modules: qr_wasm
+modules: tool_qr
 title: Qr Code Generator
 description: Easily generate QR codes for arbitrary text data
 sectionClassName: center
 ---
 
 <script type="module">
-  import init, { qrgen } from "/scripts/qr_wasm.js";
+  import init, { qrgen } from "/scripts/tool_qr.js";
   init().then((_) => {
     const qrcode = document.getElementById("qrcode");
     const data = document.getElementById("data");

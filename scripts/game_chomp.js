@@ -111,15 +111,23 @@ let board;
 
 while (true) {
   board = new Set(full_board);
+  // start with a rectangle that's off by one from a square
   if (rand() > 0.5) board = makeMove(board, [SIZE - 1, 0]);
   else board = makeMove(board, [0, SIZE - 1]);
+  // make two random moves on the board
   for (let i = 0; i < 2; i++) {
     board = makeMove(board, [
       Math.floor(rand() * (SIZE - 1)),
       Math.floor(rand() * (SIZE - 1)),
     ]);
   }
-  if (!p_positions.has(boardToString(board))) break;
+  // reject boards that are trivial or are N-positions
+  if (
+    board.has("0,1") &&
+    board.has("1,0") &&
+    !p_positions.has(boardToString(board))
+  )
+    break;
 }
 
 full_board = new Set(board);
@@ -129,17 +137,22 @@ const chomp = {
   squares: [],
   blunders: [],
   init: () => {
+    // set the background color for missing squares
     for (let i = 0; i < SIZE; i++)
       for (let j = 0; j < SIZE; j++)
         if (!board.has(`${i},${j}`))
           chomp.squares[i][j].style.backgroundColor = "#fff8ee";
   },
   click: async (i, j) => {
+    // prevent concurrent user actions
     if (locked) return;
     locked = true;
+
+    // prevent invalid moves
     if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
+    // check for a first player win
     if (board.size == 0) {
       await delay(500);
       chomp.onWin?.(attemptNumber, chomp.blunders, currentMove);
@@ -147,6 +160,7 @@ const chomp = {
       return;
     }
     currentMove += 1;
+    // check for a blunder
     if (!p_positions.has(boardToString(board)) && !blundered) {
       blundered = true;
       chomp.blunders.push(currentMove);
@@ -154,12 +168,14 @@ const chomp = {
 
     await delay(500);
 
+    // pick opponent's move; try to move to a P-position
     for (let move of board) {
       let next = makeMove(board, move);
       let next_str = boardToString(next);
       if (p_positions.has(next_str)) {
         board = makeMove(board, move);
         updateBoard(move);
+        // check for game loss
         if (board.size == 0) {
           await delay(500);
           chomp.try_again();
@@ -168,8 +184,19 @@ const chomp = {
         return;
       }
     }
-    let move = [...board][Math.floor(Math.random() * board.size)];
-    board = makeMove(board, move);
+    // pick opponent's move that leaves the most squares
+    let move;
+    let next_board;
+    let max_size = 0;
+    for (const m of board) {
+      let next = makeMove(board, m);
+      if (next.size > max_size) {
+        move = m;
+        next_board = next;
+        max_size = next.size;
+      }
+    }
+    board = next_board;
     updateBoard(move);
     locked = false;
   },

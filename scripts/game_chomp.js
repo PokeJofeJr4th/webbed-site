@@ -144,12 +144,13 @@ const chomp = {
           chomp.squares[i][j].style.backgroundColor = "#fff8ee";
   },
   click: async (i, j) => {
+    // prevent invalid moves
+    if (!board.has(`${i},${j}`)) return;
+
     // prevent concurrent user actions
     if (locked) return;
     locked = true;
 
-    // prevent invalid moves
-    if (!board.has(`${i},${j}`)) return;
     board = makeMove(board, [i, j]);
     updateBoard([i, j]);
     // check for a first player win

@@ -2,7 +2,7 @@ import random from "/scripts/random.js";
 
 const rand = random.fromSeed(new Date().toLocaleDateString("en-US"));
 
-const SIZE = 5;
+const SIZE = 6;
 
 let locked = false;
 

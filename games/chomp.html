@@ -73,7 +73,7 @@ sectionClassName: center
           innerText: `Attempt ${i + 1}: Blunder on move ${blunders[i]}`,
         }),
       );
-      shareText += `❌Blunder on move ${blunders[i]}\n`;
+      shareText += `❌ Blunder on move ${blunders[i]}\n`;
     }
 
     children.push(
@@ -81,7 +81,7 @@ sectionClassName: center
         innerText: `Attempt ${blunders.length + 1}: Won in ${currentMove + 1} moves`,
       }),
     );
-    shareText += `✅Won in ${currentMove + 1} move(s)\nhttps://abigailjc.dev/games/chomp`;
+    shareText += `✅ Won in ${currentMove + 1} move(s)\nhttps://abigailjc.dev/games/chomp`;
 
     const description = document.getElementById("game-win-description");
     description.replaceChildren(...children);
